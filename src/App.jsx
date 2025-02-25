@@ -1,14 +1,7 @@
-import FormComponent from "./components/FormComponent/FormComponent"
-
+import MyForm from "./components/MyForm";
 
 function App() {
-
-  return (
-    <>
-    <h1>Formularz zgłoszeniowy na kurs programowania</h1>
-    <FormComponent>Formularz</FormComponent>
-    </>
-  )
+  return <MyForm />;
 }
 
-export default App
+export default App;
