@@ -3,11 +3,11 @@ import { ErrorText } from "../styles/App";
 import styled from "styled-components";
 
 const StyledSelect = styled.select`
-  font-size: 14px;
+  font-size: 12px;
   width: 100%;
   padding: 10px;
-  background:rgb(70, 75, 84);
-  border: 1px solid #666;
+  background:#464646;
+  border: 1px solid #5c5c5c;;
   color: white;
   border-radius: 6px;
   height: auto;

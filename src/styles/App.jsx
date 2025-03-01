@@ -17,7 +17,7 @@ export const Container = styled.div`
   font-family: "Arial", sans-serif;
 `;
 
-export const ErrorText = styled.span`
-  font-size: 14px;
+export const ErrorText = styled.p`
+  font-size: 10px;
   color: red;
 `;
