@@ -9,14 +9,14 @@ const CourseRegistrationSummary = ({ formData }) => {
         <p>Telefon: {formData.phone}</p>
       </div>
 
-      {formData.skills.length > 0 && <h2>Doświadczenie w programowaniu:</h2>}
+      {/* {formData.skills.length > 0 && <h2>Doświadczenie w programowaniu:</h2>}
       <ul>
         {formData.skills.map(({ skill, level }, index) => (
           <li key={index}>
             technologia: {skill} / poziom {level}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       <h2>Preferencje kursu:</h2>
       <div>
@@ -29,7 +29,7 @@ const CourseRegistrationSummary = ({ formData }) => {
         </ul>
       </div>
       <h2>Curriculum Vitae:</h2>
-      <img src={formData.imageUrl}></img>
+      <img src={formData.imgURL}></img>
     </div>
   );
 };

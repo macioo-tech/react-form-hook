@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SchemaForm } from "../schema/SchemaForm";
@@ -8,6 +8,7 @@ import Select from "./Select";
 import Button from "./Button";
 
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
+  const [imgURL, setImgURL] = useState(null);
   const [showSkills, setShowSkills] = useState(false);
 
   const methods = useForm({
@@ -32,7 +33,18 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
   const onSubmit = (data) => {
     setFormSubmitted(true);
-    setFormData({...data});
+    setFormData({ ...data, imgURL: imgURL });
+  };
+
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    console.log("File:", file);
+
+    if (file) {
+      const objectUrl = URL.createObjectURL(file);
+      console.log("Object Url:", objectUrl);
+      setImgURL(objectUrl);
+    }
   };
 
   const initSkills = () => {
@@ -70,12 +82,17 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
         <section>
           <h2>Dodaj swoje CV</h2>
-          <Input name="cvFile" label="Dodaj swoje CV" type="file" />
+          <Input
+            name="cvFile"
+            label="Dodaj swoje CV"
+            type="file"
+            onChange={onFileChange}
+          />
         </section>
 
         {/* SKILLS under dev */}
 
-        <section>
+        {/* <section>
           <h2>Doświadczenie w programowaniu</h2>
           <label htmlFor="experience">
             Czy masz doświadczenie w programowaniu ?
@@ -94,7 +111,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
               </ul>
             </div>
           )}
-        </section>
+        </section> */}
 
         <button type="submit">Submit</button>
       </form>
