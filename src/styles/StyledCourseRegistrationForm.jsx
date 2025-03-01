@@ -26,10 +26,10 @@ export const ErrorText = styled.p`
   color: #e10b0b;
 `;
 
-export const ButtonSubmit = styled.button`
+export const FormButton = styled.button`
   width: 100%;
   height: 30px;
-  padding: 0.5em;
+  padding: 0em;
   
   background: #3d34ebe2;
   border-radius: 0.5em;
@@ -37,4 +37,9 @@ export const ButtonSubmit = styled.button`
 
   font-size: 1em;
   color: white;
+
+  cursor: pointer;
+  &:hover {
+    background: #347aeb;
+  }
 `;

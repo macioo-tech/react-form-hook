@@ -3,13 +3,11 @@ import { ErrorText } from "../styles/StyledCourseRegistrationForm";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
-  width: 97%;
-  height: 30px;
-  padding: 0.5em;
+  padding: 10px;
 
-  background:#464646;
+  background: #4a4f58;
   border-radius: 0.5em;
-  border: none;
+  border: 1px solid #666;
 
   font-size: 1em;
   color: white;
@@ -23,7 +21,7 @@ const Input = ({ name, label, type = "text", ...rest }) => {
   const errorMessage = errors[name]?.message;
 
   return (
-    <div>
+    <>
       <StyledInput
         {...register(name)}
         {...rest}
@@ -31,7 +29,7 @@ const Input = ({ name, label, type = "text", ...rest }) => {
         placeholder={label}
       />
       {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-    </div>
+    </>
   );
 };
 

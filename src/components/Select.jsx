@@ -5,11 +5,11 @@ import styled from "styled-components";
 const StyledSelect = styled.select`
   width: 100%;
   height: 100%;
-  padding: 0.5em;
+  padding: 10px;
 
-  background:#464646;
+  background:#4a4f58;
   border-radius: 0.5em;
-  border: none;
+  border: 1px solid #666;
 
   font-size: 1em;
   color: white;

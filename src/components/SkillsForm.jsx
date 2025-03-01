@@ -1,5 +1,55 @@
 import { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
+import { Title, FormButton } from "../styles/StyledCourseRegistrationForm";
+import styled from "styled-components";
+
+const StyledLabel = styled.span`
+  font-size: 1em;
+  color: white;
+`;
+
+const StyledSelect = styled.select`
+  width: 33%;
+  height: 100%;
+  padding: 10px;
+
+  background: #4a4f58;
+  border: 1px solid #666;
+  border-radius: 0.5em;
+  outline: none;
+  appearance: none;
+
+  font-size: 1em;
+  color: white;
+`;
+
+const DeleteButton = styled.button`
+  width: 33%;
+  height: 100%;
+  padding: 1em;
+
+  background: #ff0000;
+  border-radius: 0.5em;
+  border: none;
+
+  flex-shrink: 0;
+
+  font-size: 1em;
+  color: white;
+  
+  cursor: pointer;
+  &:hover {
+    background: #cc0000; 
+  }
+
+`;
+
+const Raw = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+`;
 
 const SkillsForm = ({ optionsSkill, optionsLevel }) => {
   const [showSkillsForm, setShowSkillsForm] = useState(false);
@@ -21,48 +71,45 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
 
   return (
     <div>
-      <h2>Doświadczenie w programowaniu</h2>
-      <label htmlFor="experience">
-        Czy masz doświadczenie w programowaniu ?
-        <input name="experience" type="checkbox" onChange={toggleSkillsForm} />
-      </label>
-      <ul>
-        {showSkillsForm && (
-          <button
-            type="button"
-            onClick={() => {
-              append({ skill: "React", level: 1 });
-            }}
-          >
-            Dodaj doświadczenie
-          </button>
-        )}
-        {fields.map((item, index) => {
-          return (
-            <li key={item.id}>
-              <select {...register(`skills.${index}.skill`)}>
-                {optionsSkill.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+      <Title>Doświadczenie w programowaniu</Title>
+      <input type="checkbox" onChange={toggleSkillsForm} />
+      <StyledLabel>Czy masz doświadczenie w programowaniu ?</StyledLabel>
 
-              <select {...register(`skills.${index}.level`)}>
-                {optionsLevel.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+      {showSkillsForm && (
+        <FormButton
+          type="button"
+          onClick={() => {
+            append({ skill: "React", level: 1 });
+          }}
+        >
+          Dodaj doświadczenie
+        </FormButton>
+      )}
+      {fields.map((item, index) => {
+        return (
+          <Raw key={item.id}>
+            <StyledSelect {...register(`skills.${index}.skill`)}>
+              {optionsSkill.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </StyledSelect>
 
-              <button type="button" onClick={() => remove(index)}>
-                Usuń
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+            <StyledSelect {...register(`skills.${index}.level`)}>
+              {optionsLevel.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </StyledSelect>
+
+            <DeleteButton type="button" onClick={() => remove(index)}>
+              Usuń
+            </DeleteButton>
+          </Raw>
+        );
+      })}
     </div>
   );
 };
