@@ -36,7 +36,6 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
     console.log("Submitted data", data);
     setFormSubmitted(true);
     setFormData({ ...data, imgURL: imgURL });
-    
   };
 
   const onFileChange = (event) => {
@@ -98,28 +97,10 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
             <input name="experience" type="checkbox" onChange={initSkills} />
           </label>
           {showSkills && (
-            <div>
-              <SkillsForm optionsSkill={["React", "Node.js", "HTML", "CSS", "Next.js"]} optionsLevel={[1,2,3,4,5]}/>
-              {/* <ul>
-                {fields.map((item, index) => {
-                  return (
-                  <li key={item.id}>
-                    <div>
-                      <input
-                        {...register(`skills.${index}.skill`)}
-                        type="text"
-                      />
-                      <input
-                        {...register(`skills.${index}.level`)}
-                        type="text"
-                      />
-                      <button id="something" type="button" onClick={() => remove(index)}>Usuń</button>
-                    </div>
-                  </li>
-                  );
-                })}
-              </ul> */}
-            </div>
+            <SkillsForm
+              optionsSkill={["React", "Node.js", "HTML", "CSS", "Next.js"]}
+              optionsLevel={[1, 2, 3, 4, 5]}
+            />
           )}
         </section>
 
