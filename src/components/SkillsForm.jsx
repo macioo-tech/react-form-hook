@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Title, FormButton } from "../styles/StyledCourseRegistrationForm";
+import {
+  Title,
+  FormButton,
+  ErrorText,
+} from "../styles/StyledCourseRegistrationForm";
 import styled from "styled-components";
 
 const StyledLabel = styled.span`
@@ -36,12 +40,11 @@ const DeleteButton = styled.button`
 
   font-size: 1em;
   color: white;
-  
+
   cursor: pointer;
   &:hover {
-    background: #cc0000; 
+    background: #cc0000;
   }
-
 `;
 
 const Raw = styled.div`
@@ -54,7 +57,11 @@ const Raw = styled.div`
 const SkillsForm = ({ optionsSkill, optionsLevel }) => {
   const [showSkillsForm, setShowSkillsForm] = useState(false);
 
-  const { register, control } = useFormContext();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "skills",
@@ -107,6 +114,9 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
             <DeleteButton type="button" onClick={() => remove(index)}>
               Usuń
             </DeleteButton>
+
+            <ErrorText>{errors?.skills?.[index]?.skill?.message}</ErrorText>
+            <ErrorText>{errors?.skills?.[index]?.level?.message}</ErrorText>
           </Raw>
         );
       })}
