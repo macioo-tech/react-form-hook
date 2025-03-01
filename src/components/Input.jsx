@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 
-const Input = ({ name, label, type = "text" }) => {
+const Input = ({ name, label, type = "text", ...rest }) => {
   const {
     register,
     formState: { errors },
@@ -9,7 +9,7 @@ const Input = ({ name, label, type = "text" }) => {
 
   return (
     <div>
-      <input {...register(name)} type={type} placeholder={label} />
+      <input {...register(name)} {...rest} type={type} placeholder={label} />
       {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
