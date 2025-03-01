@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { useForm, FormProvider, useFieldArray } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SchemaForm } from "../schema/SchemaForm";
 import Input from "./Input";
 import Radio from "./Radio";
 import Select from "./Select";
-import Button from "./Button";
 import SkillsForm from "./SkillsForm";
 
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const [imgURL, setImgURL] = useState(null);
-  const [showSkills, setShowSkills] = useState(false);
+  
 
   const methods = useForm({
     resolver: zodResolver(SchemaForm),
@@ -25,12 +24,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
     },
   });
 
-  const { register, control, watch, handleSubmit } = methods;
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "skills",
-  });
+  const { watch, handleSubmit } = methods;
 
   const onSubmit = (data) => {
     console.log("Submitted data", data);
@@ -45,16 +39,6 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
       const objectUrl = URL.createObjectURL(file);
       setImgURL(objectUrl);
     }
-  };
-
-  const initSkills = () => {
-    remove();
-    setShowSkills(!showSkills);
-  };
-
-  const addSkills = () => {
-    append({ skill: "dupa", level: "blada" });
-    console.log(fields);
   };
 
   console.log(watch());
@@ -91,17 +75,17 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
         </section>
 
         <section>
-          <h2>Doświadczenie w programowaniu</h2>
-          <label htmlFor="experience">
-            Czy masz doświadczenie w programowaniu ?
-            <input name="experience" type="checkbox" onChange={initSkills} />
-          </label>
-          {showSkills && (
-            <SkillsForm
-              optionsSkill={["React", "Node.js", "HTML", "CSS", "Next.js"]}
-              optionsLevel={[1, 2, 3, 4, 5]}
-            />
-          )}
+          <SkillsForm
+            optionsSkill={[
+              "React",
+              "Node.js",
+              "HTML",
+              "CSS",
+              "Next.js",
+              "other",
+            ]}
+            optionsLevel={[1, 2, 3, 4, 5]}
+          />
         </section>
 
         <button type="submit">Submit</button>
