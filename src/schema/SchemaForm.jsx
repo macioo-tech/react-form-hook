@@ -15,20 +15,17 @@ export const SchemaForm = z.object({
     .string()
     .regex(/^\d{9}$/, "Numer telefonu musi składać się z 9 cyfr"),
   courseType: z.string().min(1, { message: "Wybierz formę nauki" }),
-  courseTechnology: z
+  courseTech: z
     .array(z.string())
     .min(1, { message: "Wybierz conajmniej jednś technologię" }),
-  cvFile: z
-    .any()
-    .refine(
-      (files) =>
-        files &&
-        files.length > 0 &&
-        files instanceof File &&
-        ["image/jpeg", "image/png"].includes(files.type),
-      {
-        message:
-          "Niepoprawny typ załącznika. Dozwolone rozszerzenie JPEG lub PNG",
-      }
-    ),
+   cvFile: z
+     .any()
+     .refine(
+       (files) =>
+         ["image/jpeg", "imaghe/jpg" , "image/png"].includes(files[0]?.type),
+       {
+         message:
+           "Niepoprawny typ pliku.",
+       }
+     ),
 });

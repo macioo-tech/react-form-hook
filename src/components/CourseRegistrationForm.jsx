@@ -7,8 +7,7 @@ import Radio from "./Radio";
 import Select from "./Select";
 import Button from "./Button";
 
-const MyForm = ({ onSubmit }) => {
-
+const CourseRegistrationForm = ({ setFormSubmitted }) => {
   const [showSkills, setShowSkills] = useState(false);
 
   const methods = useForm({
@@ -19,7 +18,8 @@ const MyForm = ({ onSubmit }) => {
       email: "",
       phone: undefined,
       courseType: "Remote",
-      courseTechnology: undefined,
+      courseTech: undefined,
+      skills: [],
     },
   });
 
@@ -30,13 +30,17 @@ const MyForm = ({ onSubmit }) => {
     name: "skills",
   });
 
+  const onSubmit = () => {
+    setFormSubmitted(true);
+  };
+
   const initSkills = () => {
     remove();
     setShowSkills(!showSkills);
   };
 
   const addSkills = () => {
-    append({ skill: "JS", level: "2" });
+    append({ skill: "dupa", level: "blada" });
     console.log(fields);
   };
 
@@ -57,9 +61,9 @@ const MyForm = ({ onSubmit }) => {
           <h2>Preferencje kursu</h2>
           <Radio name="courseType" options={["Remote", "On-site"]} />
           <Select
-            name="courseTechnology"
-            options={["React", "Node.js", "HTML", "CSS", "Next.js"]
-            } multiple
+            name="courseTech"
+            options={["React", "Node.js", "HTML", "CSS", "Next.js"]}
+            multiple
           />
         </section>
 
@@ -72,28 +76,21 @@ const MyForm = ({ onSubmit }) => {
 
         <section>
           <h2>Doświadczenie w programowaniu</h2>
-          <Input name="addExperience" type="checkbox" onChange={initSkills} />
+          <label htmlFor="experience">
+            Czy masz doświadczenie w programowaniu ?
+            <input name="experience" type="checkbox" onChange={initSkills} />
+          </label>
           {showSkills && (
             <div>
-              <button onClick={addSkills}>Dodaj doświadczenie</button>
-              {/* {fields.map((item, index) => {
-                <li key={item.id}>
-                  <p>{item.skill}</p>
-                  <p>{item.level}</p>
-                  <select {...register(`skills.${index}.skill`)}>
-                    <option>Java</option>
-                    <option>Js</option>
-                    <option>gg</option>
-                  </select>
-
-                  <select {...register(`skills.${index}.level`)}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                  </select>
-                  <button onClick={remove(index)}>Usuń</button>
-                </li>
-              })} */}
+              <Button label="Dodaj doświadczenie" onClick={addSkills} />
+              <ul>
+                {fields.map((item, index) => {
+                  <li key={item.id}>
+                    {item.skill}
+                    <button onClick={() => remove(index)}>Usuń</button>
+                  </li>;
+                })}
+              </ul>
             </div>
           )}
         </section>
@@ -104,4 +101,4 @@ const MyForm = ({ onSubmit }) => {
   );
 };
 
-export default MyForm;
+export default CourseRegistrationForm;
