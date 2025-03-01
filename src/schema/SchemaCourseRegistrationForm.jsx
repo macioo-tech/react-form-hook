@@ -17,15 +17,18 @@ export const SchemaCourseRegistrationForm = z.object({
   courseType: z.string().min(1, { message: "Wybierz formę nauki" }),
   courseTech: z
     .array(z.string())
-    .min(1, { message: "Wybierz conajmniej jednś technologię" }),
-   cvFile: z
-     .any()
-     .refine(
-       (files) =>
-         ["image/jpeg", "imaghe/jpg" , "image/png"].includes(files[0]?.type),
-       {
-         message:
-           "Niepoprawny typ pliku.",
-       }
-     ),
+    .min(1, { message: "Wybierz conajmniej jedną technologię" }),
+  cvFile: z
+    .any()
+    .refine(
+      (files) =>
+        ["image/jpeg", "imaghe/jpg", "image/png"].includes(files[0]?.type),
+      {
+        message: "Musisz dodać załącznik jako zdjęcie",
+      }
+    ),
+  // skills: z.arrey().length(1, {
+  //   message:
+  //     "Gdy zaznaczono doświadczenie w programowaniu, lista doświadczeń nie mie być pusta",
+  // }),
 });

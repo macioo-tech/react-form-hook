@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Title, Container } from "./styles/App";
 import CourseRegistrationForm from "./components/CourseRegistrationForm";
 import CourseRegistrationSummary from "./components/CourseRegistrationSummary";
+
 
 function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -10,13 +12,15 @@ function App() {
     <>
       {formSubmitted ? (
         <div>
-          <h1>Dane z formularza</h1>
-          <CourseRegistrationSummary formData={formData} />
+          <Title>Dane z formularza</Title>
+          <Container><CourseRegistrationSummary formData={formData} /></Container>
+          
         </div>
       ) : (
         <div>
-          <h1>Fromularz zgłoszeniowy na kurs programowania</h1>
-          <CourseRegistrationForm setFormSubmitted={setFormSubmitted} setFormData={setFormData}/>
+          <Title>Fromularz zgłoszeniowy na kurs programowania</Title>
+          <Container><CourseRegistrationForm setFormSubmitted={setFormSubmitted} setFormData={setFormData}/></Container>
+          
         </div>
       )}
     </>

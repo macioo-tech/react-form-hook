@@ -9,7 +9,7 @@ import SkillsForm from "./SkillsForm";
 
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const [imgURL, setImgURL] = useState(null);
-  
+
   const methods = useForm({
     resolver: zodResolver(SchemaCourseRegistrationForm),
     defaultValues: {
@@ -26,9 +26,10 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const { watch, handleSubmit } = methods;
 
   const onSubmit = (data) => {
-    console.log("Submitted data", data);
+    
     setFormSubmitted(true);
     setFormData({ ...data, imgURL: imgURL });
+    console.log("Submitted data", data);
   };
 
   const onFileChange = (event) => {
