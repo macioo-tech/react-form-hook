@@ -7,7 +7,7 @@ import Radio from "./Radio";
 import Select from "./Select";
 import Button from "./Button";
 
-const CourseRegistrationForm = ({ setFormSubmitted }) => {
+const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const [showSkills, setShowSkills] = useState(false);
 
   const methods = useForm({
@@ -30,8 +30,9 @@ const CourseRegistrationForm = ({ setFormSubmitted }) => {
     name: "skills",
   });
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
     setFormSubmitted(true);
+    setFormData({...data});
   };
 
   const initSkills = () => {
