@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SchemaCourseRegistrationForm } from "../schema/SchemaCourseRegistrationForm";
+import { Form, Title, ButtonSubmit } from "../styles/StyledCourseRegistrationForm"
 import Input from "./Input";
 import Radio from "./Radio";
 import Select from "./Select";
@@ -26,7 +27,6 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const { watch, handleSubmit } = methods;
 
   const onSubmit = (data) => {
-    
     setFormSubmitted(true);
     setFormData({ ...data, imgURL: imgURL });
     console.log("Submitted data", data);
@@ -45,36 +45,30 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <section>
-          <h2>Dane osobowe</h2>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+
+          <Title>Dane osobowe</Title>
           <Input name="firstName" label="Imię" />
           <Input name="lastName" label="Nazwisko" />
           <Input name="email" label="E-Mail" />
           <Input name="phone" label="Nr. Telefonu" />
-        </section>
 
-        <section>
-          <h2>Preferencje kursu</h2>
-          <Radio name="courseType" options={["Remote", "On-site"]} />
+          <Title>Preferencje kursu</Title>
+          <Radio label="Wybierz formę nauki:" name="courseType" options={["Remote", "On-site"]} />
           <Select
             name="courseTech"
             options={["React", "Node.js", "HTML", "CSS", "Next.js"]}
             multiple
           />
-        </section>
 
-        <section>
-          <h2>Dodaj swoje CV</h2>
+          <Title>Dodaj swoje CV</Title>
           <Input
             name="cvFile"
             label="Dodaj swoje CV"
             type="file"
             onChange={onFileChange}
           />
-        </section>
 
-        <section>
           <SkillsForm
             optionsSkill={[
               "React",
@@ -86,10 +80,10 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
             ]}
             optionsLevel={[1, 2, 3, 4, 5]}
           />
-        </section>
 
-        <button type="submit">Submit</button>
-      </form>
+        <ButtonSubmit type="submit">Submit</ButtonSubmit>
+     
+      </Form>
     </FormProvider>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Title, Container } from "./styles/App";
+import { Title, Container } from "./styles/StyledApp";
 import CourseRegistrationForm from "./components/CourseRegistrationForm";
 import CourseRegistrationSummary from "./components/CourseRegistrationSummary";
 

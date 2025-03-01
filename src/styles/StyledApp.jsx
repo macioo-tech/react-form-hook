@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-  font-size: 32px;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  font-size: 28px;
   color: #28a745;
-  margin-bottom: 30px;
 `;
 
 export const Container = styled.div`
@@ -15,9 +17,4 @@ export const Container = styled.div`
   min-height: 100vh;
   padding: 40px;
   font-family: "Arial", sans-serif;
-`;
-
-export const ErrorText = styled.p`
-  font-size: 10px;
-  color: red;
 `;

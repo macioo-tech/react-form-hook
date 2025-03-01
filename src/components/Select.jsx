@@ -1,20 +1,18 @@
 import { useFormContext } from "react-hook-form";
-import { ErrorText } from "../styles/App";
+import { ErrorText } from "../styles/StyledCourseRegistrationForm";
 import styled from "styled-components";
 
 const StyledSelect = styled.select`
-  font-size: 12px;
   width: 100%;
-  padding: 10px;
+  height: 100%;
+  padding: 0.5em;
+
   background:#464646;
-  border: 1px solid #5c5c5c;;
+  border-radius: 0.5em;
+  border: none;
+
+  font-size: 1em;
   color: white;
-  border-radius: 6px;
-  height: auto;
-  display: block;
-  overflow: hidden;
-  outline: none;
-  border-radius: 6px;
 `;
 
 const Select = ({ options, name, ...rest }) => {
