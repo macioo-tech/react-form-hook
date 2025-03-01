@@ -8,7 +8,7 @@ import Select from "./Select";
 import Button from "./Button";
 
 const MyForm = ({ onSubmit }) => {
-  // SKILLS
+
   const [showSkills, setShowSkills] = useState(false);
 
   const methods = useForm({
@@ -30,20 +30,18 @@ const MyForm = ({ onSubmit }) => {
     name: "skills",
   });
 
-  // SKILLS
-const initSkills = () => {
-  remove();
-  setShowSkills(!showSkills);
-}
-  
+  const initSkills = () => {
+    remove();
+    setShowSkills(!showSkills);
+  };
 
   const addSkills = () => {
     append({ skill: "JS", level: "2" });
-    console.log(fields)
+    console.log(fields);
   };
 
   console.log(watch());
-  
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -60,7 +58,8 @@ const initSkills = () => {
           <Radio name="courseType" options={["Remote", "On-site"]} />
           <Select
             name="courseTechnology"
-            options={["React", "Node.js", "HTML", "CSS", "Next.js"]}
+            options={["React", "Node.js", "HTML", "CSS", "Next.js"]
+            } multiple
           />
         </section>
 
@@ -73,16 +72,10 @@ const initSkills = () => {
 
         <section>
           <h2>Doświadczenie w programowaniu</h2>
-          <Input
-            name="addExperience"
-            type="checkbox"
-            onChange={initSkills}
-          />
+          <Input name="addExperience" type="checkbox" onChange={initSkills} />
           {showSkills && (
             <div>
-              <button onClick={addSkills}>
-                Dodaj doświadczenie
-              </button>
+              <button onClick={addSkills}>Dodaj doświadczenie</button>
               {/* {fields.map((item, index) => {
                 <li key={item.id}>
                   <p>{item.skill}</p>

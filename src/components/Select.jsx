@@ -9,14 +9,12 @@ const Select = ({ options, name, ...rest }) => {
 
   return (
     <div>
-      <select {...register(name)} {...rest} multiple>
-        <optgroup>
-          {options.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </optgroup>
+      <select {...register(name)} {...rest}>
+        {options.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
       </select>
       {errorMessage && <p>{errorMessage}</p>}
     </div>
