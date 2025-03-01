@@ -1,4 +1,4 @@
-import { useActionState, useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SchemaForm } from "../schema/SchemaForm";
@@ -6,6 +6,7 @@ import Input from "./Input";
 import Radio from "./Radio";
 import Select from "./Select";
 import Button from "./Button";
+import SkillsForm from "./SkillsForm";
 
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const [imgURL, setImgURL] = useState(null);
@@ -32,17 +33,17 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   });
 
   const onSubmit = (data) => {
+    console.log("Submitted data", data);
     setFormSubmitted(true);
     setFormData({ ...data, imgURL: imgURL });
+    
   };
 
   const onFileChange = (event) => {
     const file = event.target.files[0];
-    console.log("File:", file);
 
     if (file) {
       const objectUrl = URL.createObjectURL(file);
-      console.log("Object Url:", objectUrl);
       setImgURL(objectUrl);
     }
   };
@@ -90,9 +91,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
           />
         </section>
 
-        {/* SKILLS under dev */}
-
-        {/* <section>
+        <section>
           <h2>Doświadczenie w programowaniu</h2>
           <label htmlFor="experience">
             Czy masz doświadczenie w programowaniu ?
@@ -100,18 +99,29 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
           </label>
           {showSkills && (
             <div>
-              <Button label="Dodaj doświadczenie" onClick={addSkills} />
-              <ul>
+              <SkillsForm optionsSkill={["React", "Node.js", "HTML", "CSS", "Next.js"]} optionsLevel={[1,2,3,4,5]}/>
+              {/* <ul>
                 {fields.map((item, index) => {
+                  return (
                   <li key={item.id}>
-                    {item.skill}
-                    <button onClick={() => remove(index)}>Usuń</button>
-                  </li>;
+                    <div>
+                      <input
+                        {...register(`skills.${index}.skill`)}
+                        type="text"
+                      />
+                      <input
+                        {...register(`skills.${index}.level`)}
+                        type="text"
+                      />
+                      <button id="something" type="button" onClick={() => remove(index)}>Usuń</button>
+                    </div>
+                  </li>
+                  );
                 })}
-              </ul>
+              </ul> */}
             </div>
           )}
-        </section> */}
+        </section>
 
         <button type="submit">Submit</button>
       </form>
