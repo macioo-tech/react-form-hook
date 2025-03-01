@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const SchemaForm = z.object({
+export const SchemaCourseRegistrationForm = z.object({
   firstName: z
     .string()
     .min(3, { message: "Imię musi się składać z conajmniej 3 znaków" }),

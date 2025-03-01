@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SchemaForm } from "../schema/SchemaForm";
+import { SchemaCourseRegistrationForm } from "../schema/SchemaCourseRegistrationForm";
 import Input from "./Input";
 import Radio from "./Radio";
 import Select from "./Select";
@@ -10,9 +10,8 @@ import SkillsForm from "./SkillsForm";
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const [imgURL, setImgURL] = useState(null);
   
-
   const methods = useForm({
-    resolver: zodResolver(SchemaForm),
+    resolver: zodResolver(SchemaCourseRegistrationForm),
     defaultValues: {
       firstName: "",
       lastName: "",
