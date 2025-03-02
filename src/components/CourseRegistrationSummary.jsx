@@ -31,7 +31,7 @@ const Image = styled.img`
 const CourseRegistrationSummary = ({ formData }) => {
   // const [imgURL, setImgURL] = useState(null);
 
-  const { firstName, lastName, email, phone, courseType, courseTech, cvFile } =
+  const { firstName, lastName, email, phone, courseType, courseTech, cv } =
     formData;
 
   const fileToUrl = (file) => {
@@ -68,7 +68,7 @@ const CourseRegistrationSummary = ({ formData }) => {
 
       <Title>Curriculum Vitae:</Title>
       <ImageContainer>
-        {cvFile && <Image src={fileToUrl(cvFile[0])} />}
+        {cv && <Image src={fileToUrl(cv[0])} />}
       </ImageContainer>
     </Form>
   );

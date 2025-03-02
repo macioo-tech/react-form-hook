@@ -18,7 +18,7 @@ export const SchemaCourseRegistrationForm = z.object({
   courseTech: z
     .array(z.string())
     .min(1, { message: "Wybierz conajmniej jedną technologię" }),
-  cvFile: z
+  cv: z
     .any()
     .refine(
       (files) =>

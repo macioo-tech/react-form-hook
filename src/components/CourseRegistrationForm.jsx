@@ -65,7 +65,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
         <Title>Dodaj swoje CV</Title>
         <Input
-          name="cvFile"
+          name="cv"
           label="Dodaj swoje CV"
           type="file"
         />
