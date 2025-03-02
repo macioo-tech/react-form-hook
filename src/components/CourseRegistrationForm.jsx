@@ -37,10 +37,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
   const onSubmit = (data) => {
     setFormSubmitted(true);
     setFormData({ ...data });
-    console.log("Submitted data", data);
   };
-
-  console.log(watch("skills"));
 
   return (
     <FormProvider {...methods}>
