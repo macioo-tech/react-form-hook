@@ -7,6 +7,14 @@ import {
 } from "../styles/StyledCourseRegistrationForm";
 import styled from "styled-components";
 
+const Container = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const StyledLabel = styled.span`
   font-size: 1em;
   color: white;
@@ -15,7 +23,7 @@ const StyledLabel = styled.span`
 const StyledSelect = styled.select`
   width: 33%;
   height: 100%;
-  padding: 10px;
+  padding: 1em;
 
   background: #4a4f58;
   border: 1px solid #666;
@@ -62,7 +70,7 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
     control,
     formState: { errors },
   } = useFormContext();
-  
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "skills",
@@ -78,10 +86,12 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
   };
 
   return (
-    <div>
+    <Container>
       <Title>Doświadczenie w programowaniu</Title>
-      <input type="checkbox" onChange={toggleSkillsForm} />
-      <StyledLabel>Czy masz doświadczenie w programowaniu ?</StyledLabel>
+      <div>
+        <input type="checkbox" onChange={toggleSkillsForm} />
+        <StyledLabel>Czy masz doświadczenie w programowaniu ?</StyledLabel>
+      </div>
 
       {showSkillsForm && (
         <FormButton
@@ -89,6 +99,7 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
           onClick={() => {
             append({ skill: "React", level: 1 });
           }}
+          color="green"
         >
           Dodaj doświadczenie
         </FormButton>
@@ -121,7 +132,7 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
           </Raw>
         );
       })}
-    </div>
+    </Container>
   );
 };
 

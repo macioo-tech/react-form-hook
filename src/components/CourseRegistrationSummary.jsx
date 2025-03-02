@@ -38,8 +38,6 @@ const CourseRegistrationSummary = ({ formData }) => {
     if (file) return URL.createObjectURL(file);
   };
   
-  if (skills) console.log(skills)
-
   return (
     <Form>
       <Title>Dane osobowe</Title>

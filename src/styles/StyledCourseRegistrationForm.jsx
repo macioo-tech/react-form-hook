@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Form = styled.form`
   width: 450px;
@@ -39,7 +39,11 @@ export const FormButton = styled.button`
   color: white;
 
   cursor: pointer;
-  &:hover {
-    background: #347aeb;
+
+  ${(props) =>
+    css`
+      background: ${props.color}
+    `
   }
+
 `;

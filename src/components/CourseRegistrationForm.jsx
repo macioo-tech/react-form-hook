@@ -28,7 +28,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
     },
   });
 
-  const { watch, handleSubmit } = methods;
+  const { handleSubmit } = methods;
 
   const optionsTech = ["React", "Node.js", "HTML", "CSS", "Next.js"];
   const optionsSkills = [...optionsTech, "other"];
