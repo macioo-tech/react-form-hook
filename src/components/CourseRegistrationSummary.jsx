@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Form, Title } from "../styles/StyledCourseRegistrationForm";
 import styled from "styled-components";
 
@@ -32,24 +31,22 @@ const Image = styled.img`
 const CourseRegistrationSummary = ({ formData }) => {
   // const [imgURL, setImgURL] = useState(null);
 
-  const renderFromFile = () => {
-    if (formData.cvFile && formData.cvFile.length > 0) {
-      const file = formData.cvFile[0];
-      if (file) {
-        const objectUrl = URL.createObjectURL(file);
-        console.log(objectUrl);
-        return <Image>src={objectUrl}</Image>
-      }
-    }
+  const { firstName, lastName, email, phone, courseType, courseTech, cvFile } =
+    formData;
+
+  const fileToUrl = (file) => {
+    if (file) return URL.createObjectURL(file);
   };
+
+  // console.log(fileToUrl(cvFile[0]))
 
   return (
     <Form>
       <Title>Dane osobowe</Title>
-      <StyledText>Imię: {formData.firstName}</StyledText>
-      <StyledText>Nazwisko: {formData.lastName}</StyledText>
-      <StyledText>Email: {formData.email}</StyledText>
-      <StyledText>Telefon: {formData.phone}</StyledText>
+      <StyledText>Imię: {firstName}</StyledText>
+      <StyledText>Nazwisko: {lastName}</StyledText>
+      <StyledText>Email: {email}</StyledText>
+      <StyledText>Telefon: {phone}</StyledText>
 
       {/* {formData.skills?.length > 0 && <Title>Doświadczenie w programowaniu:</Title>}
       <List>
@@ -61,18 +58,17 @@ const CourseRegistrationSummary = ({ formData }) => {
       </List> */}
 
       <Title>Preferencje kursu:</Title>
-      <StyledText>Typ kursu: {formData.courseType}</StyledText>
+      <StyledText>Typ kursu: {courseType}</StyledText>
       <StyledText>Preferowane technologie kursu:</StyledText>
       <List>
-        {formData.courseTech.map((tech, index) => {
+        {courseTech.map((tech, index) => {
           return <ListItem key={index}>{tech}</ListItem>;
         })}
       </List>
 
       <Title>Curriculum Vitae:</Title>
       <ImageContainer>
-        <Image src={formData.imgURL}></Image>
-        {() => renderFromFile()}
+        {cvFile && <Image src={fileToUrl(cvFile[0])} />}
       </ImageContainer>
     </Form>
   );

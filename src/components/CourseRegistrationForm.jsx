@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SchemaCourseRegistrationForm } from "../schema/SchemaCourseRegistrationForm";
@@ -13,7 +13,6 @@ import Select from "./Select";
 import SkillsForm from "./SkillsForm";
 
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
-  const [imgURL, setImgURL] = useState(null);
 
   const methods = useForm({
     resolver: zodResolver(SchemaCourseRegistrationForm),
@@ -36,17 +35,8 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
   const onSubmit = (data) => {
     setFormSubmitted(true);
-    setFormData({ ...data, imgURL: imgURL });
+    setFormData({ ...data });
     console.log("Submitted data", data);
-  };
-
-  const onFileChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      const objectUrl = URL.createObjectURL(file);
-      setImgURL(objectUrl);
-    }
   };
 
   console.log(watch());
@@ -78,7 +68,6 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
           name="cvFile"
           label="Dodaj swoje CV"
           type="file"
-          onChange={onFileChange}
         />
 
         <SkillsForm
