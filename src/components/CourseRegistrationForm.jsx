@@ -15,6 +15,7 @@ import SkillsForm from "./SkillsForm";
 const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
 
   const methods = useForm({
+    shouldUnregister: false,
     resolver: zodResolver(SchemaCourseRegistrationForm),
     defaultValues: {
       firstName: "",
@@ -39,7 +40,7 @@ const CourseRegistrationForm = ({ setFormSubmitted, setFormData }) => {
     console.log("Submitted data", data);
   };
 
-  console.log(watch());
+  console.log(watch("skills"));
 
   return (
     <FormProvider {...methods}>

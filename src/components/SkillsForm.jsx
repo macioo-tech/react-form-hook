@@ -62,6 +62,7 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
     control,
     formState: { errors },
   } = useFormContext();
+  
   const { fields, append, remove } = useFieldArray({
     control,
     name: "skills",

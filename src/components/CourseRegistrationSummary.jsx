@@ -31,14 +31,14 @@ const Image = styled.img`
 const CourseRegistrationSummary = ({ formData }) => {
   // const [imgURL, setImgURL] = useState(null);
 
-  const { firstName, lastName, email, phone, courseType, courseTech, cv } =
+  const { firstName, lastName, email, phone, courseType, courseTech, cv, skills } =
     formData;
 
   const fileToUrl = (file) => {
     if (file) return URL.createObjectURL(file);
   };
-
-  // console.log(fileToUrl(cvFile[0]))
+  
+  if (skills) console.log(skills)
 
   return (
     <Form>
@@ -48,14 +48,12 @@ const CourseRegistrationSummary = ({ formData }) => {
       <StyledText>Email: {email}</StyledText>
       <StyledText>Telefon: {phone}</StyledText>
 
-      {/* {formData.skills?.length > 0 && <Title>Doświadczenie w programowaniu:</Title>}
+      {skills && skills.length > 0 && <Title>Doświadczenie w programowaniu:</Title>}
       <List>
-        {formData.skills.map(({ skill, level }, index) => (
-          <ListItem key={index}>
-            technologia: {skill} / poziom {level}
-          </ListItem>
-        ))}
-      </List> */}
+        {skills.map(({ skill, level }, index) => {
+          return <ListItem key={index}>Technologia: {skill} / poziom: {level}</ListItem>;
+        })}
+      </List>
 
       <Title>Preferencje kursu:</Title>
       <StyledText>Typ kursu: {courseType}</StyledText>
