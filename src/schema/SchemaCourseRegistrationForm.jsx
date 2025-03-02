@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 const skillsSchema = z.object({
-  skill: z.string().min(3, {message: 'Nazwa musi mieć conajmniej 2 znaki'}),
-  level: z.number().min(1, {message: "Wartość nie moe być mniejsza od 1"}).max(5, {message: 'Wartość nie moze być większa od 5'}),
+  skill: z.string().min(1, { message: 'Nazwa technologii nie moze być pusta' }).optional(),  
+  level: z.union([z.string().optional(), z.number().optional()]),
 })
 
 export const SchemaCourseRegistrationForm = z.object({
@@ -32,8 +32,5 @@ export const SchemaCourseRegistrationForm = z.object({
         message: "Musisz dodać załącznik jako zdjęcie",
       }
     ),
-  skills: z.array(skillsSchema).length(1, {
-    message:
-      "Gdy zaznaczono doświadczenie w programowaniu, lista doświadczeń nie mie być pusta",
-  }),
+  skills: z.array(skillsSchema).optional(),
 });

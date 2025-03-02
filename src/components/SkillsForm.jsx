@@ -97,7 +97,7 @@ const SkillsForm = ({ optionsSkill, optionsLevel }) => {
         <FormButton
           type="button"
           onClick={() => {
-            append({ skill: "React", level: 1 });
+            append({ skill: "React", level: "1" });
           }}
           color="green"
         >
